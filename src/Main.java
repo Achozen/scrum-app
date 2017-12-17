@@ -3,7 +3,8 @@ import java.awt.Frame;
 import javax.swing.JFrame;
 
 public class Main {
-
+	static JFrame frame;
+	
 	public static void main(String[] args) {
 		System.out.println("Hello world");
 		createWindow();
@@ -11,7 +12,7 @@ public class Main {
 	}
 
 	private static void createWindow() {
-		JFrame frame = new JFrame("Main Window");
+		frame = new JFrame("Main Window");
 		int width = 500;
 		int height = 500;
 		frame.setSize(width, height);
