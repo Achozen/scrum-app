@@ -13,7 +13,8 @@ public class Main {
 		frame = new JFrame("Main Window");
 
 		setupWindow(frame);
-		createList(frame);
+		createFirstList(frame);
+		createSecondList(frame);
 
 		frame.setVisible(true);
 	}
@@ -26,14 +27,22 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	private static void createList(JFrame frame) {
-		JComboBox<Integer> myNumbers = new JComboBox<Integer>();
+	private static void createFirstList(JFrame frame) {
+		JComboBox<Integer> myNumbers = new JComboBox<>();
 
 		myNumbers.setBounds(50, 100, 90, 20);
 
 		for(int i = 1; i<=20; i++) {
 			myNumbers.addItem(i);
 		}
+		frame.add(myNumbers);
+	}
+
+	private static void createSecondList(JFrame frame) {
+		JComboBox<Integer> myNumbers = new JComboBox<>();
+
+		myNumbers.setBounds(50, 200, 90, 20);
+
 		frame.add(myNumbers);
 	}
 }
