@@ -14,10 +14,10 @@ public class Main {
 
 		setupWindow(frame);
 		createList(frame);
-		
+
 		frame.setVisible(true);
 	}
-	
+
 	private static void setupWindow(JFrame frame) {
 		int width = 500;
 		int height = 500;
@@ -30,7 +30,7 @@ public class Main {
 		JComboBox<Integer> myNumbers = new JComboBox<Integer>();
 
 		myNumbers.setBounds(50, 100, 90, 20);
-		
+
 		for(int i = 1; i<=20; i++) {
 			myNumbers.addItem(i);
 		}
