@@ -1,11 +1,11 @@
 package app;
+
 import javax.swing.*;
 
 public class Main {
 	private static JFrame frame;
 
 	public static void main(String[] args) {
-		System.out.println("Hello world");
 		createWindow();
 	}
 
