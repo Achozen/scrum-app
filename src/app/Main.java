@@ -1,5 +1,7 @@
 package app;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Main {
 	private static JFrame frame;
@@ -59,6 +61,13 @@ public class Main {
 		myNumbers.setBounds(200, 200, 90, 20);
 
 		frame.add(myNumbers);
+
+		myNumbers.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 	}
 
 	private static void createTextBox(JFrame frame) {
