@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 
 public class Main {
 	private static JFrame frame;
