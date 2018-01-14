@@ -4,7 +4,7 @@ import static junit.framework.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import app.Main;
+import app.*;
 
 public class MainTest {
 
