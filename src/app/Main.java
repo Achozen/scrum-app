@@ -1,6 +1,5 @@
 package app;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class Main {
 	private static JFrame frame;
@@ -16,6 +15,7 @@ public class Main {
 		setupWindow(frame);
 		createFirstList(frame);
 		createSecondList(frame);
+		addOkButton(frame);
 
 		frame.setVisible(true);
 	}
@@ -49,6 +49,14 @@ public class Main {
 			myNumbers.addItem(number);
 
 		}
+		frame.add(myNumbers);
+	}
+
+	private static void addOkButton(JFrame frame) {
+		JButton myNumbers = new JButton();
+		myNumbers.setText("OK");
+		myNumbers.setBounds(200, 200, 90, 20);
+
 		frame.add(myNumbers);
 	}
 }
