@@ -16,6 +16,7 @@ public class Main {
 		createFirstList(frame);
 		createSecondList(frame);
 		addOkButton(frame);
+		createTextBox(frame);
 
 		frame.setVisible(true);
 	}
@@ -58,5 +59,12 @@ public class Main {
 		myNumbers.setBounds(200, 200, 90, 20);
 
 		frame.add(myNumbers);
+	}
+
+	private static void createTextBox(JFrame frame) {
+		JTextField t1;
+		t1 = new JTextField("Wynik");
+		t1.setBounds(200, 100, 150, 30);
+		frame.add(t1);
 	}
 }
