@@ -44,6 +44,11 @@ public class Main {
 
 		myNumbers.setBounds(50, 200, 90, 20);
 
+		int[] numbers = new NumberGenerator().generateNumbers();
+		for(int number: numbers){
+			myNumbers.addItem(number);
+
+		}
 		frame.add(myNumbers);
 	}
 }

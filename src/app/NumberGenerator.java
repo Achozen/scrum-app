@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class NumberGenerator {
 
-	public int[] NumberGenerator() {
+	public int[] generateNumbers() {
 
 		int[] tab = new int[20];
 		Random generator = new Random();
