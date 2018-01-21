@@ -5,6 +5,10 @@ import java.awt.event.ActionListener;
 
 public class Main {
 	private static JFrame frame;
+	private static JComboBox<Integer> firstList = new JComboBox<>();
+	private static JComboBox<Integer> secondList = new JComboBox<>();
+
+
 
 	public static void main(String[] args) {
 		System.out.println("Hello world");
@@ -32,39 +36,38 @@ public class Main {
 	}
 
 	private static void createFirstList(JFrame frame) {
-		JComboBox<Integer> myNumbers = new JComboBox<>();
 
-		myNumbers.setBounds(50, 100, 90, 20);
+		firstList.setBounds(50, 100, 90, 20);
 
 		for(int i = 1; i<=20; i++) {
-			myNumbers.addItem(i);
+			firstList.addItem(i);
 		}
-		frame.add(myNumbers);
+		frame.add(firstList);
 	}
 
 	private static void createSecondList(JFrame frame) {
-		JComboBox<Integer> myNumbers = new JComboBox<>();
-
-		myNumbers.setBounds(50, 200, 90, 20);
+		secondList.setBounds(50, 200, 90, 20);
 
 		int[] numbers = new NumberGenerator().generateNumbers();
 		for(int number: numbers){
-			myNumbers.addItem(number);
+			secondList.addItem(number);
 
 		}
-		frame.add(myNumbers);
+		frame.add(secondList);
 	}
 
 	private static void addOkButton(JFrame frame) {
-		JButton myNumbers = new JButton();
-		myNumbers.setText("OK");
-		myNumbers.setBounds(200, 200, 90, 20);
+		JButton okButton = new JButton();
+		okButton.setText("OK");
+		okButton.setBounds(200, 200, 90, 20);
 
-		frame.add(myNumbers);
+		frame.add(okButton);
 
-		myNumbers.addActionListener(new ActionListener() {
+		okButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("okButton clicked");
+
 
 			}
 		});
