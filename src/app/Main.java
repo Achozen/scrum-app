@@ -6,9 +6,12 @@ import java.awt.event.ActionListener;
 
 public class Main {
 
+    private static JTextField bruttoTextField;
+    private static JTextField resultTextField;
     private static JFrame frame;
     private static JComboBox<String> stateList = new JComboBox<>();
     private static JComboBox<String> productCategoryList = new JComboBox<>();
+    private static int[] taxAmount = new int[7];
 
     public static void main(String[] args) {
         System.out.println("Hello world");
@@ -53,19 +56,22 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
 
                 productCategoryList.removeAllItems();
-                for (int i = 1; i <= 6; i++) {
-                    productCategoryList.addItem("Product " + i + " Vat " + new NumberGenerator().generateTaxExample() + "%");
-                }
+                generateProducts();
             }
         });
+    }
+
+    private static void generateProducts() {
+        for (int i = 0; i <= 5; i++) {
+            taxAmount[i] = new NumberGenerator().generateTaxExample();
+            productCategoryList.addItem("Product " + i + " Tax " + taxAmount[i] + "%");
+        }
     }
 
     private static void createProductList(JFrame frame) {
         productCategoryList.setBounds(200, 100, 150, 30);
 
-        for (int i = 1; i <= 6; i++) {
-            productCategoryList.addItem("Product " + i + " Vat " + new NumberGenerator().generateTaxExample() + "%");
-        }
+        generateProducts();
         frame.add(productCategoryList);
     }
 
@@ -80,21 +86,33 @@ public class Main {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("okButton clicked");
+                double netto = 0;
+                double taxPercentage = taxAmount[productCategoryList.getSelectedIndex()];
+                System.out.println("tax amount selected: " + taxAmount[productCategoryList.getSelectedIndex()]);
+                double brutto = Double.parseDouble(bruttoTextField.getText());
+                System.out.println("Brutto " + brutto);
+                double actualTax = taxPercentage / 100;
+                System.out.println("actualTax " + actualTax);
+
+                netto = brutto * (1 - actualTax);
+                System.out.println("netto  " + netto);
+
+                resultTextField.setText(String.valueOf(netto));
             }
         });
     }
 
     private static void createResultTextBox(JFrame frame) {
-        JTextField t1;
-        t1 = new JTextField("Result");
-        t1.setBounds(50, 200, 120, 20);
-        frame.add(t1);
+
+        resultTextField = new JTextField("Result");
+        resultTextField.setBounds(50, 200, 120, 20);
+        frame.add(resultTextField);
     }
 
     private static void createInitialAmountTextBox(JFrame frame) {
-        JTextField t1;
-        t1 = new JTextField("Brutto");
-        t1.setBounds(50, 50, 150, 30);
-        frame.add(t1);
+
+        bruttoTextField = new JTextField("Brutto");
+        bruttoTextField.setBounds(50, 50, 150, 30);
+        frame.add(bruttoTextField);
     }
 }
