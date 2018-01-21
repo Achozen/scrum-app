@@ -1,8 +1,13 @@
 package app;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Main {
-	private static JFrame frame;
+
+	public static JFrame frame;
+	private static JComboBox<String> stateList = new JComboBox<>();
+	private static JComboBox<String> productCategoryList = new JComboBox<>();
 
 	public static void main(String[] args) {
 		System.out.println("Hello world");
@@ -13,15 +18,16 @@ public class Main {
 		frame = new JFrame("Main Window");
 
 		setupWindow(frame);
-		createFirstList(frame);
-		createSecondList(frame);
+		createStateList(frame);
+		setupOnStateChange();
+		createProductList(frame);
 		addOkButton(frame);
 		createTextBox(frame);
 
 		frame.setVisible(true);
 	}
 
-	private static void setupWindow(JFrame frame) {
+	public static void setupWindow(JFrame frame) {
 		int width = 500;
 		int height = 500;
 		frame.setSize(width, height);
@@ -29,37 +35,55 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	private static void createFirstList(JFrame frame) {
-		JComboBox<Integer> myNumbers = new JComboBox<>();
+	private static void createStateList(JFrame frame) {
 
-		myNumbers.setBounds(50, 100, 90, 20);
+		stateList.setBounds(50, 100, 90, 20);
 
 		for(int i = 1; i<=20; i++) {
-			myNumbers.addItem(i);
+			stateList.addItem("State "+i);
 		}
-		frame.add(myNumbers);
+		frame.add(stateList);
 	}
 
-	private static void createSecondList(JFrame frame) {
-		JComboBox<Integer> myNumbers = new JComboBox<>();
+	private static void setupOnStateChange(){
+		stateList.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 
-		myNumbers.setBounds(50, 200, 90, 20);
+				productCategoryList.removeAllItems();
+				for(int i = 1; i<=6; i++) {
+					productCategoryList.addItem("Product "+i+" Vat "+ new NumberGenerator().generateTaxExample()+"%");
+				}
+			}
+		});
+	}
 
-		int[] numbers = new NumberGenerator().generateNumbers();
-		for(int number: numbers){
-			myNumbers.addItem(number);
-
+	private static void createProductList(JFrame frame) {
+		productCategoryList.setBounds(50, 200, 120, 20);
+		for(int i = 1; i<=6; i++) {
+			productCategoryList.addItem("Product "+i+" Vat "+ new NumberGenerator().generateTaxExample()+"%");
 		}
-		frame.add(myNumbers);
+		frame.add(productCategoryList);
 	}
 
 	private static void addOkButton(JFrame frame) {
-		JButton myNumbers = new JButton();
-		myNumbers.setText("OK");
-		myNumbers.setBounds(200, 200, 90, 20);
+		JButton okButton = new JButton();
+		okButton.setText("OK");
+		okButton.setBounds(200, 200, 90, 20);
 
-		frame.add(myNumbers);
+		frame.add(okButton);
+
+		okButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("okButton clicked");
+
+
+			}
+		});
 	}
+
+
 
 	private static void createTextBox(JFrame frame) {
 		JTextField t1;
