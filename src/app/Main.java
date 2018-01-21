@@ -78,7 +78,7 @@ public class Main {
     private static void addOkButton(JFrame frame) {
         JButton okButton = new JButton();
         okButton.setText("Licz netto !");
-        okButton.setBounds(50, 150, 90, 20);
+        okButton.setBounds(50, 150, 120, 20);
 
         frame.add(okButton);
 
@@ -94,7 +94,7 @@ public class Main {
                 double actualTax = taxPercentage / 100;
                 System.out.println("actualTax " + actualTax);
 
-                netto = brutto * (1 - actualTax);
+                netto = brutto / (1 + actualTax);
                 System.out.println("netto  " + netto);
 
                 resultTextField.setText(String.valueOf(netto));
