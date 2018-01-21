@@ -4,11 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Main {
+
 	private static JFrame frame;
-	private static JComboBox<Integer> firstList = new JComboBox<>();
-	private static JComboBox<Integer> secondList = new JComboBox<>();
-
-
+	private static JComboBox<String> stateList = new JComboBox<>();
+	private static JComboBox<String> productCategoryList = new JComboBox<>();
 
 	public static void main(String[] args) {
 		System.out.println("Hello world");
@@ -19,8 +18,9 @@ public class Main {
 		frame = new JFrame("Main Window");
 
 		setupWindow(frame);
-		createFirstList(frame);
-		createSecondList(frame);
+		createStateList(frame);
+		setupOnStateChange();
+		createProductList(frame);
 		addOkButton(frame);
 		createTextBox(frame);
 
@@ -35,25 +35,35 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	private static void createFirstList(JFrame frame) {
+	private static void createStateList(JFrame frame) {
 
-		firstList.setBounds(50, 100, 90, 20);
+		stateList.setBounds(50, 100, 90, 20);
 
 		for(int i = 1; i<=20; i++) {
-			firstList.addItem(i);
+			stateList.addItem("State "+i);
 		}
-		frame.add(firstList);
+		frame.add(stateList);
 	}
 
-	private static void createSecondList(JFrame frame) {
-		secondList.setBounds(50, 200, 90, 20);
+	private static void setupOnStateChange(){
+		stateList.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 
-		int[] numbers = new NumberGenerator().generateNumbers();
-		for(int number: numbers){
-			secondList.addItem(number);
+				productCategoryList.removeAllItems();
+				for(int i = 1; i<=6; i++) {
+					productCategoryList.addItem("Product "+i+" Vat "+ new NumberGenerator().generateTaxExample()+"%");
+				}
+			}
+		});
+	}
 
+	private static void createProductList(JFrame frame) {
+		productCategoryList.setBounds(50, 200, 120, 20);
+		for(int i = 1; i<=6; i++) {
+			productCategoryList.addItem("Product "+i+" Vat "+ new NumberGenerator().generateTaxExample()+"%");
 		}
-		frame.add(secondList);
+		frame.add(productCategoryList);
 	}
 
 	private static void addOkButton(JFrame frame) {
@@ -72,6 +82,8 @@ public class Main {
 			}
 		});
 	}
+
+
 
 	private static void createTextBox(JFrame frame) {
 		JTextField t1;
