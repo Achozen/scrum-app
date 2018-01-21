@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 public class Main {
 
-	private static JFrame frame;
+	public static JFrame frame;
 	private static JComboBox<String> stateList = new JComboBox<>();
 	private static JComboBox<String> productCategoryList = new JComboBox<>();
 
@@ -27,7 +27,7 @@ public class Main {
 		frame.setVisible(true);
 	}
 
-	private static void setupWindow(JFrame frame) {
+	public static void setupWindow(JFrame frame) {
 		int width = 500;
 		int height = 500;
 		frame.setSize(width, height);
